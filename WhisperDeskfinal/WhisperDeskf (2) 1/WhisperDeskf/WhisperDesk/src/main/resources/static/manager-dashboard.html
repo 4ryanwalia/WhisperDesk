@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Manager Dashboard</title>
+  <link rel="stylesheet" href="dashboard.css" />
+</head>
+<body>
+<div class="dashboard">
+  <aside>
+    <h3>Manager Panel</h3>
+    <ul>
+      <li><a href="#" onclick="loadNewRequests()">New Requests</a></li>
+      <li><a href="#" onclick="loadInProgress()">In Progress</a></li>
+      <li><a href="#" onclick="loadCompleted()">Completed</a></li>
+      <li>
+        <!-- Department Filter Dropdown -->
+        <label for="departmentFilter">Filter by Department:</label>
+        <select id="departmentFilter" onchange="filterComplaintsByDepartment()">
+          <option value="All">All</option>
+          <option value="HR">HR</option>
+          <option value="IT">IT</option>
+          <option value="Finance">Finance</option>
+        </select>
+
+      </li>
+    </ul>
+  </aside>
+  <main id="content">
+    <h2>Welcome Manager</h2>
+    <p>Select an option from the left</p>
+  </main>
+</div>
+<script src="script.js"></script>
+</body>
+</html>

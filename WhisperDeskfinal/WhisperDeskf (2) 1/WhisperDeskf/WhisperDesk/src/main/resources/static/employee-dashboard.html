@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Employee Dashboard</title>
+  <link rel="stylesheet" href="dashboard.css" />
+
+</head>
+<body>
+  <div class="dashboard">
+    <aside>
+      <h3>Employee Panel</h3>
+      <ul>
+        <li><a href="#" onclick="loadComplaintForm()">File Complaint</a></li>
+        <li><a href="#" onclick="loadMyComplaints()">My Complaints</a></li>
+        <li><a href="#" onclick="loadAllComplaints()">All Complaints</a></li>
+        <li><a href="#" onclick="loadRejectedComplaints()">Rejected Complaints</a></li>
+        <li><a href="#" onclick="loadCompletedComplaints()">Completed</a></li>
+      </ul>
+    </aside>
+    <main id="content">
+      <h2>Welcome Employee</h2>
+      <p>Select an option from the left</p>
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>

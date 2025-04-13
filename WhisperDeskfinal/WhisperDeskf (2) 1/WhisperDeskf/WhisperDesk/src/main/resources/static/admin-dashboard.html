@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css" />
+
+    <script>
+        const role = localStorage.getItem("role");
+
+     if (role !== "ADMIN") {
+       alert("Access denied. Admins only.");
+       window.location.href = "login.html";
+     }
+
+
+    </script>
+
+</head>
+<body>
+<h1>Admin Dashboard</h1>
+
+<table id="complaintTable">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Department</th>
+        <th>Message</th>
+        <th>Status</th>
+        <th>Employee Name</th>
+        <th>Employee Email</th>
+        <th>Employee ID</th>
+    </tr>
+    </thead>
+    <tbody id="complaintBody">
+    </tbody>
+</table>
+
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const token = localStorage.getItem("jwtToken");
+
+        if (!token) {
+            alert("Unauthorized. Please log in.");
+            window.location.href = "login.html";
+            return;
+        }
+
+        fetch("/api/complaints/admin", {
+            headers: {
+                "Authorization": `Bearer ${token}`
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            const tbody = document.getElementById("complaintBody");
+            tbody.innerHTML = "";
+
+            data.forEach(c => {
+                const row = document.createElement("tr");
+                row.innerHTML = `
+                    <td>${c.id}</td>
+                    <td>${c.department}</td>
+                    <td>${c.message}</td>
+                    <td>${c.status}</td>
+                    <td>${c.employeeName}</td>
+                    <td>${c.employeeEmail}</td>
+                    <td>${c.employeeId}</td>
+                `;
+                tbody.appendChild(row);
+            });
+        })
+        .catch(error => console.error("Error loading complaints:", error));
+    });
+</script>
+</body>
+</html>
